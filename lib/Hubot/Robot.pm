@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.0.1';
+  $Hubot::Robot::VERSION = '0.0.2';
 }
 
 use Moose;
@@ -106,6 +106,30 @@ sub userForName {
     }
 
     return $result;
+}
+
+sub usersForFuzzyRawName {
+    my ($self, $fuzzyName) = @_;
+    my $lowerFuzzyName = lc $fuzzyName;
+    my @users;
+    while (my ($key, $user) = each %{ $self->brain->data->{users} || {} }) {
+        if (lc($user->{name}) =~ m/^$lowerFuzzyName/) {
+            push @users, $user;
+        }
+    }
+
+    return @users;
+}
+
+sub usersForFuzzyName {
+    my ($self, $fuzzyName) = @_;
+    my @matchedUsers = $self->usersForFuzzyRawName($fuzzyName);
+    my $lowerFuzzyName = lc $fuzzyName;
+    for my $user (@matchedUsers) {
+        return $user if lc($user) eq $lowerFuzzyName;
+    }
+
+    return @matchedUsers;
 }
 
 sub shutdown {

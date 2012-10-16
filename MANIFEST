@@ -1,3 +1,4 @@
+Changes
 INSTALL
 LICENSE
 MANIFEST
@@ -20,6 +21,7 @@ lib/Hubot/Response.pm
 lib/Hubot/Robot.pm
 lib/Hubot/Scripts/ascii.pm
 lib/Hubot/Scripts/help.pm
+lib/Hubot/Scripts/roles.pm
 lib/Hubot/Scripts/shorten.pm
 lib/Hubot/Scripts/tweet.pm
 lib/Hubot/TextListener.pm
