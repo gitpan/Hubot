@@ -1,6 +1,6 @@
 package Hubot::Message;
 {
-  $Hubot::Message::VERSION = '0.0.2';
+  $Hubot::Message::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -16,12 +16,26 @@ has 'done' => (
 );
 
 sub finish { shift->done(1) }
+sub TO_JSON {
+    my $self = shift;
+    return {
+        ## prvent recursive call
+        ## Hubot::UserTO_JSON -> Hubot::Message::TO_JSON -> Hubot::User::TO_JSON
+        user => {
+            name => $self->user->{name},
+            id => $self->user->{id},
+        },
+        done => $self->done,
+    };
+}
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 
 package Hubot::TextMessage;
 {
-  $Hubot::TextMessage::VERSION = '0.0.2';
+  $Hubot::TextMessage::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -38,13 +52,21 @@ sub match {
     return $self->text =~ m/$regex/;
 }
 
+override 'TO_JSON' => sub {
+    my $self = shift;
+    return {
+        %{ super() },
+        text => $self->text
+    };
+};
+
 __PACKAGE__->meta->make_immutable;
 
 1;
 
 package Hubot::EnterMessage;
 {
-  $Hubot::EnterMessage::VERSION = '0.0.2';
+  $Hubot::EnterMessage::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -55,7 +77,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::LeaveMessage;
 {
-  $Hubot::LeaveMessage::VERSION = '0.0.2';
+  $Hubot::LeaveMessage::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -66,13 +88,13 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::CatchAllMessage;
 {
-  $Hubot::CatchAllMessage::VERSION = '0.0.2';
+  $Hubot::CatchAllMessage::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
 extends 'Hubot::Message';
 
-has 'message' => ( is => 'ro', isa => 'Str' );
+has 'message' => ( is => 'ro', isa => 'Hubot::Message' );
 
 __PACKAGE__->meta->make_immutable;
 

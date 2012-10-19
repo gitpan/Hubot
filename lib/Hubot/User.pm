@@ -1,6 +1,6 @@
 package Hubot::User;
 {
-  $Hubot::User::VERSION = '0.0.2';
+  $Hubot::User::VERSION = '0.0.3';
 }
 use strict;
 use warnings;
@@ -10,6 +10,8 @@ sub new {
     $ref->{name} ||= $ref->{id};
     bless $ref, $class;
 }
+
+sub TO_JSON { return { %{ shift() } } }
 
 1;
 

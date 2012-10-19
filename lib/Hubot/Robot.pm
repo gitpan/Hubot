@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.0.2';
+  $Hubot::Robot::VERSION = '0.0.3';
 }
 
 use Moose;
@@ -49,22 +49,6 @@ sub BUILD {
     $self->loadAdapter($self->adapter)
 }
 
-sub receive {
-    my ($self, $message) = @_;
-    my $results = [];
-    for my $listener ($self->listeners) {
-        eval $listener->call($message);
-        last if $message->done;
-        if ($@) {
-            print STDERR "Unable to call the listener: $@\n";
-            return 0;
-        }
-    }
-
-    # if message not instanceof CatchAllMessage and results.indexOf(true) is -1
-    #   @receive new CatchAllMessage(message)
-}
-
 sub loadAdapter {
     my ($self, $adapter) = @_;
     ## TODO: HUBOT_DEFAULT_ADAPTERS
@@ -81,15 +65,15 @@ sub run { shift->adapter->run }
 
 sub userForId {
     my ($self, $id, $options) = @_;
-    my $user = $self->brain->data->{users}{$id};
+    my $user = $self->brain->{data}{users}{$id};
     unless ($user) {
         $user = Hubot::User->new({ id => $id, %$options });
-        $self->brain->data->{users}{$id} = $user;
+        $self->brain->{data}{users}{$id} = $user;
     }
 
     my $options_room = $options->{room} || '';
     if ($options_room ne $user->{room}) {
-        $self->brain->data->{users}{$id} = $user;
+        $self->brain->{data}{users}{$id} = $user;
     }
 
     return $user;
@@ -98,10 +82,10 @@ sub userForId {
 sub userForName {
     my ($self, $name) = @_;
     my $result;
-    for my $k (keys %{ $self->brain->data->{users} }) {
-        my $userName = $self->brain->data->{users}{$k}{name};
+    for my $k (keys %{ $self->brain->{data}{users} }) {
+        my $userName = $self->brain->{data}{users}{$k}{name};
         if (lc $userName eq lc $name) {
-            $result = $self->brain->data->{users}{$k};
+            $result = $self->brain->{data}{users}{$k};
         }
     }
 
@@ -112,7 +96,7 @@ sub usersForFuzzyRawName {
     my ($self, $fuzzyName) = @_;
     my $lowerFuzzyName = lc $fuzzyName;
     my @users;
-    while (my ($key, $user) = each %{ $self->brain->data->{users} || {} }) {
+    while (my ($key, $user) = each %{ $self->brain->{data}{users} || {} }) {
         if (lc($user->{name}) =~ m/^$lowerFuzzyName/) {
             push @users, $user;
         }
@@ -229,6 +213,54 @@ sub respond {
         regex => $newRegex,
         callback => $callback
     ));
+}
+
+sub enter {
+    my ($self, $callback) = @_;
+    $self->addListener(Hubot::Listener->new(
+        robot => $self,
+        matcher => sub { ref(shift) eq 'Hubot::EnterMessage' ? 1 : () },
+        callback => $callback
+    ));
+}
+
+sub leave {
+    my ($self, $callback) = @_;
+    $self->addListener(Hubot::Listener->new(
+        robot => $self,
+        matcher => sub { ref(shift) eq 'Hubot::LeaveMessage' ? 1 : () },
+        callback => $callback
+    ));
+}
+
+sub catchAll {
+    my ($self, $callback) = @_;
+    $self->addListener(Hubot::Listener->new(
+        robot => $self,
+        matcher => sub { ref(shift) eq 'Hubot::CatchAllMessage' ? 1 : () },
+        callback => sub {
+            my $msg = shift;
+            $msg->message($msg->message->message);
+            $callback->($msg);
+        }
+    ));
+}
+
+sub receive {
+    my ($self, $message) = @_;
+    my $results = [];
+    for my $listener ($self->listeners) {
+        eval $listener->call($message);
+        last if $message->done;
+        if ($@) {
+            print STDERR "Unable to call the listener: $@\n";
+            return 0;
+        }
+    }
+
+    $self->receive(new Hubot::CatchAllMessage(
+        message => $message
+    )) if ref($message) ne 'Hubot::CatchAllMessage';
 }
 
 sub http { AnyEvent::HTTP::ScopedClient->new($_[1]) }

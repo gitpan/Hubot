@@ -1,6 +1,6 @@
 package Hubot::Response;
 {
-  $Hubot::Response::VERSION = '0.0.2';
+  $Hubot::Response::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -11,7 +11,7 @@ has 'robot' => (
 );
 
 has 'message' => (
-    is  => 'ro',
+    is  => 'rw',
     isa => 'Hubot::Message',
 );
 

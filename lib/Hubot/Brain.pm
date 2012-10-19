@@ -1,21 +1,20 @@
 package Hubot::Brain;
 {
-  $Hubot::Brain::VERSION = '0.0.2';
+  $Hubot::Brain::VERSION = '0.0.3';
 }
 use Moose;
 use namespace::autoclean;
 
 extends 'Hubot::EventEmitter';
 
-has 'data' => (
-    is      => 'rw',
-    isa     => 'HashRef',
-    default => sub { { users => {} } },
-);
+sub BUILD {
+    my $self = shift;
+    $self->{data}{users} = {};
+}
 
 sub save {
     my $self = shift;
-    $self->emit( 'save', $self->data );
+    $self->emit( 'save', $self->{data} );
 }
 
 sub close {
@@ -33,10 +32,10 @@ sub mergeData {
             }
         }
 
-        $self->data->{$key} = $data->{$key};
+        $self->{data}{$key} = $data->{$key};
     }
 
-    $self->emit( 'loaded', $self->data );
+    $self->emit( 'loaded', $self->{data} );
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -53,9 +52,9 @@ Hubot::Brain - Represents somewhat persistent storage for the robot.
 
 =head1 SYNOPSIS
 
-    $robot->brain->data->{key} = ''; # scalar
-    $robot->brain->data->{key} = {}; # HashRef
-    $robot->brain->data->{key} = []; # ArrayRef
+    $robot->brain->{data}{key} = ''; # scalar
+    $robot->brain->{data}{key} = {}; # HashRef
+    $robot->brain->{data}{key} = []; # ArrayRef
 
 =head1 DESCRIPTION
 
