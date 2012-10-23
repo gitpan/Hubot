@@ -1,3 +1,10 @@
+package Hubot;
+{
+  $Hubot::VERSION = '0.0.4';
+}
+
+1;
+
 =pod
 
 =encoding utf-8

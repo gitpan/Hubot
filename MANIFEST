@@ -8,7 +8,7 @@ README.md
 bin/hubot
 dist.ini
 hubot-scripts.json
-lib/Hubot.pod
+lib/Hubot.pm
 lib/Hubot/Adapter.pm
 lib/Hubot/Adapter/Campfire.pm
 lib/Hubot/Adapter/Irc.pm
