@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.0.4';
+  $Hubot::Adapter::Irc::VERSION = '0.0.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -10,7 +10,7 @@ extends 'Hubot::Adapter';
 use AnyEvent;
 use AnyEvent::IRC::Client;
 use Time::HiRes 'time';
-use Encode 'encode_utf8';
+use Encode qw/encode_utf8 decode_utf8/;
 
 use Hubot::Message;
 
@@ -46,7 +46,7 @@ sub parse_msg {
     my ( $self, $irc_msg ) = @_;
 
     my ($nickname) = $irc_msg->{prefix} =~ m/^([^!]+)/;
-    my $message = $irc_msg->{params}[1];
+    my $message = decode_utf8($irc_msg->{params}[1]);
     return ( $nickname, $message );
 }
 

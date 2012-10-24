@@ -1,6 +1,6 @@
 package Hubot::Scripts::roles;
 {
-  $Hubot::Scripts::roles::VERSION = '0.0.4';
+  $Hubot::Scripts::roles::VERSION = '0.0.5';
 }
 use strict;
 use warnings;
@@ -119,7 +119,7 @@ sub getAmbiguousUserText {
     return sprintf(
         "Be more specific, I know %d people named like that: %s",
         scalar @users,
-        join( ', ', @users )
+        join(', ', map { $_->{name} } @users)
     );
 }
 

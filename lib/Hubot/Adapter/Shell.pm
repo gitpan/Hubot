@@ -1,9 +1,11 @@
 package Hubot::Adapter::Shell;
 {
-  $Hubot::Adapter::Shell::VERSION = '0.0.4';
+  $Hubot::Adapter::Shell::VERSION = '0.0.5';
 }
 use Moose;
 use namespace::autoclean;
+
+use Encode 'decode_utf8';
 
 extends 'Hubot::Adapter';
 
@@ -57,7 +59,7 @@ sub run {
         poll => 'r',
         cb   => sub {
             local $| = 1;
-            chomp( my $input = <STDIN> );
+            chomp( my $input = decode_utf8(<STDIN>) );
             if ( lc($input) eq 'exit' ) {
                 $self->robot->shutdown;
                 exit;
