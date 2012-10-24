@@ -34,6 +34,7 @@ my %WriteMakefileArgs = (
     "File::Slurp" => 0,
     "Getopt::Long::Descriptive" => 0,
     "HTTP::Request" => 0,
+    "Hubot::TextMessage" => 0,
     "JSON::XS" => 0,
     "LWP::Protocol::https" => 0,
     "LWP::UserAgent" => 0,
@@ -47,7 +48,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.0.5",
+  "VERSION" => "0.0.6",
   "test" => {
     "TESTS" => "t/*.t"
   }

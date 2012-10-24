@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.0.5';
+  $Hubot::Robot::VERSION = '0.0.6';
 }
 
 use Moose;
@@ -230,6 +230,15 @@ sub leave {
     $self->addListener(Hubot::Listener->new(
         robot => $self,
         matcher => sub { ref(shift) eq 'Hubot::LeaveMessage' ? 1 : () },
+        callback => $callback
+    ));
+}
+
+sub whisper {
+    my ($self, $callback) = @_;
+    $self->addListener(Hubot::Listener->new(
+        robot => $self,
+        matcher => sub { ref(shift) eq 'Hubot::WhisperMessage' ? 1 : () },
         callback => $callback
     ));
 }
