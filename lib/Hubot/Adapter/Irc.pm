@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.0.6';
+  $Hubot::Adapter::Irc::VERSION = '0.0.7';
 }
 use Moose;
 use namespace::autoclean;
@@ -109,6 +109,7 @@ sub run {
             my ( $cl, $channel, $ircmsg ) = @_;
             my ( $nick, $msg ) = $self->parse_msg($ircmsg);
             my $user = $self->createUser( $channel, $nick );
+            $user->{room} = $channel if $channel =~ m/^#/;
             $self->receive(
                 new Hubot::TextMessage(
                     user => $user,

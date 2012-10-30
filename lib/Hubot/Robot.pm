@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.0.6';
+  $Hubot::Robot::VERSION = '0.0.7';
 }
 
 use Moose;
@@ -111,7 +111,7 @@ sub usersForFuzzyName {
     my @matchedUsers = $self->usersForFuzzyRawName($fuzzyName);
     my $lowerFuzzyName = lc $fuzzyName;
     for my $user (@matchedUsers) {
-        return $user if lc($user) eq $lowerFuzzyName;
+        return $user if lc($user->{name}) eq $lowerFuzzyName;
     }
 
     return @matchedUsers;
