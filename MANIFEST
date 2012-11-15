@@ -27,4 +27,10 @@ lib/Hubot/Scripts/tweet.pm
 lib/Hubot/TextListener.pm
 lib/Hubot/User.pm
 t/00_compile.t
+t/01_help.t
+t/02_ascii.t
+t/03_roles.t
+t/04_shorten.t
+t/05_tweet.t
+t/lib/Hubot/Adapter/Helper.pm
 weaver.ini

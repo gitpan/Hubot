@@ -1,11 +1,10 @@
 package Hubot::Listener;
 {
-  $Hubot::Listener::VERSION = '0.0.7';
+  $Hubot::Listener::VERSION = '0.0.8';
 }
 use Moose;
 use namespace::autoclean;
 
-use Hubot::Robot;
 use Hubot::Response;
 
 has 'robot' => (
