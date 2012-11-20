@@ -1,6 +1,6 @@
 package Hubot::EventEmitter;
 {
-  $Hubot::EventEmitter::VERSION = '0.0.9';
+  $Hubot::EventEmitter::VERSION = '0.0.10';
 }
 use Moose;
 use namespace::autoclean;

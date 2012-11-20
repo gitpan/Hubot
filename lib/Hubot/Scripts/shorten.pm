@@ -1,6 +1,6 @@
 package Hubot::Scripts::shorten;
 {
-  $Hubot::Scripts::shorten::VERSION = '0.0.9';
+  $Hubot::Scripts::shorten::VERSION = '0.0.10';
 }
 use strict;
 use warnings;

@@ -1,6 +1,6 @@
 package Hubot::Response;
 {
-  $Hubot::Response::VERSION = '0.0.9';
+  $Hubot::Response::VERSION = '0.0.10';
 }
 use Moose;
 use namespace::autoclean;
@@ -23,6 +23,11 @@ has 'match' => (
 sub send {
     my ( $self, @strings ) = @_;
     $self->robot->adapter->send( $self->message->user, @strings );
+}
+
+sub whisper {
+    my ( $self, $to, @strings ) = @_;
+    $self->robot->adapter->whisper( $self->message->user, $to, @strings );
 }
 
 sub topic {

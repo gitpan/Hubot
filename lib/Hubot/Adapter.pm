@@ -1,6 +1,6 @@
 package Hubot::Adapter;
 {
-  $Hubot::Adapter::VERSION = '0.0.9';
+  $Hubot::Adapter::VERSION = '0.0.10';
 }
 use Moose;
 use namespace::autoclean;
@@ -12,10 +12,11 @@ has 'robot' => (
     isa => 'Hubot::Robot'
 );
 
-sub send  { }
-sub reply { }
-sub run   { }
-sub close { }
+sub send    { }
+sub whisper { }
+sub reply   { }
+sub run     { }
+sub close   { }
 
 sub receive              { shift->robot->receive(@_) }
 sub users                { shift->robot->users }
