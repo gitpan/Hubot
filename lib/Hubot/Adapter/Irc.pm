@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.0.10';
+  $Hubot::Adapter::Irc::VERSION = '0.1.0';
 }
 use Moose;
 use namespace::autoclean;
@@ -56,8 +56,10 @@ sub parse_msg {
 
 sub send {
     my ( $self, $user, @strings ) = @_;
-    $self->irc->send_srv( 'PRIVMSG', $user->{room}, encode_utf8($_) )
-      for @strings;
+    for my $str (@strings) {
+        $self->irc->send_srv( 'PRIVMSG', $user->{room}, encode_utf8($str) );
+        Time::HiRes::sleep(0.1);
+    }
 }
 
 sub whisper {

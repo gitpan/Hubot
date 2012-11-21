@@ -1,6 +1,6 @@
 package Hubot;
 {
-  $Hubot::VERSION = '0.0.10';
+  $Hubot::VERSION = '0.1.0';
 }
 
 1;
