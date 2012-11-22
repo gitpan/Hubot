@@ -1,6 +1,6 @@
 package Hubot::Scripts::tweet;
 {
-  $Hubot::Scripts::tweet::VERSION = '0.1.0';
+  $Hubot::Scripts::tweet::VERSION = '0.1.1';
 }
 use strict;
 use warnings;

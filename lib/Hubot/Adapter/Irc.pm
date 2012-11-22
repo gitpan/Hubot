@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.1.0';
+  $Hubot::Adapter::Irc::VERSION = '0.1.1';
 }
 use Moose;
 use namespace::autoclean;
@@ -153,6 +153,7 @@ sub run {
 
     $self->emit('connected');
     $self->cv->begin;
+    $self->irc->enable_ssl if $ENV{HUBOT_IRC_ENABLE_SSL};
     $self->irc->connect(
         $options{server},
         $options{port},
