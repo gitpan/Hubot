@@ -1,6 +1,6 @@
 package Hubot::Listener;
 {
-  $Hubot::Listener::VERSION = '0.1.1';
+  $Hubot::Listener::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;

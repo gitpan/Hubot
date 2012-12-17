@@ -1,6 +1,6 @@
 package Hubot::Message;
 {
-  $Hubot::Message::VERSION = '0.1.1';
+  $Hubot::Message::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
@@ -37,7 +37,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::TextMessage;
 {
-  $Hubot::TextMessage::VERSION = '0.1.1';
+  $Hubot::TextMessage::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
@@ -65,7 +65,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::EnterMessage;
 {
-  $Hubot::EnterMessage::VERSION = '0.1.1';
+  $Hubot::EnterMessage::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
@@ -76,7 +76,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::LeaveMessage;
 {
-  $Hubot::LeaveMessage::VERSION = '0.1.1';
+  $Hubot::LeaveMessage::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
@@ -87,7 +87,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::WhisperMessage;
 {
-  $Hubot::WhisperMessage::VERSION = '0.1.1';
+  $Hubot::WhisperMessage::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
@@ -95,7 +95,7 @@ extends 'Hubot::TextMessage';
 
 package Hubot::CatchAllMessage;
 {
-  $Hubot::CatchAllMessage::VERSION = '0.1.1';
+  $Hubot::CatchAllMessage::VERSION = '0.1.2';
 }
 use Moose;
 use namespace::autoclean;
