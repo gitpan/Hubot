@@ -1,6 +1,6 @@
 package Hubot::Adapter::Shell;
 {
-  $Hubot::Adapter::Shell::VERSION = '0.1.2';
+  $Hubot::Adapter::Shell::VERSION = '0.1.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -42,6 +42,11 @@ sub reply {
     my ( $self, $user, @strings ) = @_;
     @strings = map { $user->{name} . ": $_" } @strings;
     $self->send( $user, @strings );
+}
+
+sub exist {
+    my ( $self, $user, $nick ) = @_;
+    return $self->userForName($nick);
 }
 
 sub run {

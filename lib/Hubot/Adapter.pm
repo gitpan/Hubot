@@ -1,6 +1,6 @@
 package Hubot::Adapter;
 {
-  $Hubot::Adapter::VERSION = '0.1.2';
+  $Hubot::Adapter::VERSION = '0.1.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -17,6 +17,7 @@ sub whisper { }
 sub reply   { }
 sub run     { }
 sub close   { }
+sub exist   { }
 
 sub receive              { shift->robot->receive(@_) }
 sub users                { shift->robot->users }

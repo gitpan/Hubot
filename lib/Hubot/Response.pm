@@ -1,6 +1,6 @@
 package Hubot::Response;
 {
-  $Hubot::Response::VERSION = '0.1.2';
+  $Hubot::Response::VERSION = '0.1.3';
 }
 use Moose;
 use namespace::autoclean;
@@ -53,6 +53,11 @@ sub finish {
 sub http {
     my ( $self, $url ) = @_;
     return $self->robot->http($url);
+}
+
+sub exist {
+    my ( $self, $nick ) = @_;
+    $self->robot->adapter->exist( $self->message->user, $nick );
 }
 
 __PACKAGE__->meta->make_immutable;
