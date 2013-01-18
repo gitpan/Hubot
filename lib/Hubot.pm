@@ -1,6 +1,6 @@
 package Hubot;
 {
-  $Hubot::VERSION = '0.1.3';
+  $Hubot::VERSION = '0.1.5';
 }
 
 1;
@@ -43,6 +43,12 @@ described order can affect the bot's action.
 if "shorten" is appear than "tweet", C<http://twitter.com/E<lt>usernameE<gt>/status/E<lt>tweetidE<gt>> processed twice by "shorten" and "tweet".
 the secret is behind of `tweet` script.
 actually, L<Hubot::Message> C<finish> method.
+
+if F<hubot-scripts.json> is not exist, built-in scripts
+
+"help", "tweet", "ascii", "roles"
+
+are loaded automatically.
 
 =head1 ADAPTERS
 
