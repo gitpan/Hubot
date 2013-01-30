@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.1.5';
+  $Hubot::Adapter::Irc::VERSION = '0.1.6';
 }
 use Moose;
 use namespace::autoclean;
@@ -81,24 +81,15 @@ sub run {
     $self->checkCanStart;
 
     my %options = (
-        nick => $ENV{HUBOT_IRC_NICK} || $self->robot->name,
-        port => $ENV{HUBOT_IRC_PORT} || 6667,
-        rooms  => [ split( /,/, $ENV{HUBOT_IRC_ROOMS} ) ],
-        server => $ENV{HUBOT_IRC_SERVER},
-        password => $ENV{HUBOT_IRC_PASSWORD} || '',
+        nick     => $ENV{HUBOT_IRC_NICK} || $self->robot->name,
+        port     => $ENV{HUBOT_IRC_PORT} || 6667,
+        rooms    => [ split( /,/, $ENV{HUBOT_IRC_ROOMS} ) ],
+        server   => $ENV{HUBOT_IRC_SERVER},
+        user     => $ENV{HUBOT_IRC_USER},
+        password => $ENV{HUBOT_IRC_PASSWORD},
         nickpass => $ENV{HUBOT_IRC_NICKSERV_PASSWORD},
-        userName => $ENV{HUBOT_IRC_NICKSERV_USERNAME},
-        ## TODO: fakessl, unflood, debug, usessl
+        realname => $ENV{HUBOT_IRC_REALNAME},
     );
-
-    my %clientOptions = (
-        userName => $options{userName},
-        password => $options{password},
-        port     => $options{port},
-        ## TODO: debug, stripColors, secure, selfSigned, floodProtection
-    );
-
-    $clientOptions{channels} = $options{rooms} unless $options{nickpass};
 
     $self->robot->name( $options{nick} );
 
@@ -154,13 +145,23 @@ sub run {
 
     $self->emit('connected');
     $self->cv->begin;
-    $self->irc->enable_ssl if $ENV{HUBOT_IRC_ENABLE_SSL};
+    if ($ENV{HUBOT_IRC_ENABLE_SSL}) {
+        eval "require Net::SSLeay; 1";
+        if ($@) {
+            die "HUBOT_IRC_ENABLE_SSL requires `Net::SSLeay`: $@\n";
+        } else {
+            $self->irc->enable_ssl;
+        }
+    }
     $self->irc->connect(
         $options{server},
         $options{port},
         {
             nick     => $options{nick},
+            user     => $options{user},
+            real     => $options{realname},
             password => $options{password},
+            timeout  => 10, # wait 10 seconds
         }
     );
 
@@ -238,6 +239,7 @@ Hubot::Adapter::Irc - IRC adapter for L<Hubot>
 
     $ export HUBOT_IRC_SERVER='irc.myserver.com'
     $ export HUBOT_IRC_ROOMS='#mychannel'
+    $ export HUBOT_IRC_ENABLE_SSL=1    # use SSL connection?
     $ hubot -a irc
 
 =head1 DESCRIPTION
@@ -272,6 +274,10 @@ This is the optional nick you want your hubot to join with. If omitted it will d
 
 This is the optional port of the IRC server you want your hubot to connect to. If omitted the default is C<6667>. Make a note of it if required.
 
+=item HUBOT_IRC_USER
+
+This is the optional username of the IRC server you want your hubot to connect to.
+
 =item HUBOT_IRC_PASSWORD
 
 This is the optional password of the IRC server you want your hubot to connect to. If the IRC server doesn't require a password, this can be omitted. Make a note of it if required.
@@ -280,9 +286,15 @@ This is the optional password of the IRC server you want your hubot to connect t
 
 This is the optional Nickserv password if your hubot is using a nick registered with Nickserv on the IRC server. Make a note of it if required.
 
-=item HUBOT_IRC_NICKSERV_USERNAME
+=item HUBOT_IRC_REALNAME
 
-This is the optional Nickserv username if your hubot is using a nick registered with Nickserv on the IRC server, e.g. C</msg NickServ identify E<lt>usernameE<gt> E<lt>passwordE<gt>>.
+Your realname on IRC server.
+
+=item HUBOT_IRC_ENABLE_SSL
+
+using L<AnyEvent::IRC::Connection> C<enable_ssl> at connect.
+
+requires L<Net::SSLeay>.
 
 =back
 

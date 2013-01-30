@@ -1,6 +1,6 @@
 package Hubot::Adapter;
 {
-  $Hubot::Adapter::VERSION = '0.1.5';
+  $Hubot::Adapter::VERSION = '0.1.6';
 }
 use Moose;
 use namespace::autoclean;
