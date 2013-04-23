@@ -1,6 +1,6 @@
 package Hubot::Scripts::shorten;
 {
-  $Hubot::Scripts::shorten::VERSION = '0.1.6';
+  $Hubot::Scripts::shorten::VERSION = '0.1.7';
 }
 use strict;
 use warnings;
@@ -76,6 +76,7 @@ sub load {
                         }
                     }
 
+                    $charset = 'euckr' if $charset =~ m/ksc5601/i;
                     eval { $body = decode( $charset, $body ) };
                     if ($@) {
                         return $msg->send("[$@] - $bitly");

@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.1.6';
+  $Hubot::Robot::VERSION = '0.1.7';
 }
 
 use Moose;
@@ -22,6 +22,16 @@ has 'brain' => (
     is => 'ro',
     isa => 'Hubot::Brain',
     default => sub { Hubot::Brain->new }
+);
+has '_helps' => (
+    traits  => ['Array'],
+    is => 'rw',
+    isa => 'ArrayRef[Str]',
+    default => sub { [] },
+    handles => {
+        helps   => 'elements',
+        addHelp => 'push',
+    }
 );
 has '_commands' => (
     traits  => ['Array'],
@@ -158,7 +168,10 @@ sub parseHelp {
 
     $usage =~ s/^Usage://;
     $usage =~ s/(^\s+|\s+$)//gm;
-    $self->addCommand($_) for split(/\n/, $usage);
+    $self->addHelp($_) for split(/\n/, $usage);
+
+    $module =~ s{Hubot/Scripts/}{};
+    $self->addCommand($module);
 }
 
 sub hear {
