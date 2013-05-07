@@ -1,6 +1,6 @@
 package Hubot::Brain;
 {
-  $Hubot::Brain::VERSION = '0.1.7';
+  $Hubot::Brain::VERSION = '0.1.8';
 }
 use Moose;
 use namespace::autoclean;
