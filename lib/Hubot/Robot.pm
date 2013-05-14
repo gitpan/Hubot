@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.1.8';
+  $Hubot::Robot::VERSION = '0.1.9';
 }
 
 use Moose;
@@ -17,6 +17,7 @@ use Hubot::TextListener;
 
 has 'name' => ( is => 'rw', isa => 'Str' );
 has 'alias' => ( is => 'rw', isa => 'Str' );
+has 'mode' => ( is => 'rw', isa => 'Str', default => '' );
 has 'adapter' => ( is => 'rw' );
 has 'brain' => (
     is => 'ro',
@@ -255,6 +256,15 @@ sub whisper {
     $self->addListener(Hubot::Listener->new(
         robot => $self,
         matcher => sub { ref(shift) eq 'Hubot::WhisperMessage' ? 1 : () },
+        callback => $callback
+    ));
+}
+
+sub notice {
+    my ($self, $callback) = @_;
+    $self->addListener(Hubot::Listener->new(
+        robot => $self,
+        matcher => sub { ref(shift) eq 'Hubot::NoticeMessage' ? 1 : () },
         callback => $callback
     ));
 }
