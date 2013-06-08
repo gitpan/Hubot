@@ -1,6 +1,6 @@
 package Hubot::Response;
 {
-  $Hubot::Response::VERSION = '0.1.9';
+  $Hubot::Response::VERSION = '0.1.10';
 }
 use Moose;
 use namespace::autoclean;

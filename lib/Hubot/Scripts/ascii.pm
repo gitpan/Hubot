@@ -1,6 +1,6 @@
 package Hubot::Scripts::ascii;
 {
-  $Hubot::Scripts::ascii::VERSION = '0.1.9';
+  $Hubot::Scripts::ascii::VERSION = '0.1.10';
 }
 use strict;
 use warnings;
