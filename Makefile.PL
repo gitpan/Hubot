@@ -6,6 +6,8 @@ use warnings;
 
 use ExtUtils::MakeMaker 6.30;
 
+use File::ShareDir::Install;
+install_share dist => "share";
 
 
 my %WriteMakefileArgs = (
@@ -13,7 +15,8 @@ my %WriteMakefileArgs = (
   "AUTHOR" => "Hyungsuk Hong <hshong\@perl.kr>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.30"
+    "ExtUtils::MakeMaker" => "6.30",
+    "File::ShareDir::Install" => "0.03"
   },
   "DISTNAME" => "Hubot",
   "EXE_FILES" => [
@@ -26,10 +29,16 @@ my %WriteMakefileArgs = (
     "AnyEvent::Campfire::Client" => 0,
     "AnyEvent::HTTP" => 0,
     "AnyEvent::HTTP::ScopedClient" => 0,
+    "AnyEvent::HTTPD" => 0,
     "AnyEvent::IRC::Client" => 0,
     "Cwd" => 0,
     "Encode" => 0,
+    "File::Copy" => 0,
+    "File::Copy::Recursive" => 0,
+    "File::Path" => 0,
+    "File::ShareDir" => 0,
     "File::Slurp" => 0,
+    "File::Spec::Functions" => 0,
     "Getopt::Long::Descriptive" => 0,
     "HTTP::Request" => 0,
     "JSON::XS" => 0,
@@ -48,7 +57,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::More" => 0
   },
-  "VERSION" => "0.1.10",
+  "VERSION" => "0.2.0",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -86,5 +95,10 @@ delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
 
 WriteMakefile(%WriteMakefileArgs);
 
+{
+package
+MY;
+use File::ShareDir::Install qw(postamble);
+}
 
 

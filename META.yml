@@ -6,6 +6,7 @@ build_requires:
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
+  File::ShareDir::Install: 0.03
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.130880'
 license: perl
@@ -18,10 +19,16 @@ requires:
   AnyEvent::Campfire::Client: 0
   AnyEvent::HTTP: 0
   AnyEvent::HTTP::ScopedClient: 0
+  AnyEvent::HTTPD: 0
   AnyEvent::IRC::Client: 0
   Cwd: 0
   Encode: 0
+  File::Copy: 0
+  File::Copy::Recursive: 0
+  File::Path: 0
+  File::ShareDir: 0
   File::Slurp: 0
+  File::Spec::Functions: 0
   Getopt::Long::Descriptive: 0
   HTTP::Request: 0
   JSON::XS: 0
@@ -36,4 +43,4 @@ requires:
   namespace::autoclean: 0
   strict: 0
   warnings: 0
-version: 0.1.10
+version: 0.2.0

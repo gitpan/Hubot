@@ -14,6 +14,7 @@ lib/Hubot/Adapter/Campfire.pm
 lib/Hubot/Adapter/Irc.pm
 lib/Hubot/Adapter/Shell.pm
 lib/Hubot/Brain.pm
+lib/Hubot/Creator.pm
 lib/Hubot/EventEmitter.pm
 lib/Hubot/Listener.pm
 lib/Hubot/Message.pm
@@ -26,6 +27,11 @@ lib/Hubot/Scripts/shorten.pm
 lib/Hubot/Scripts/tweet.pm
 lib/Hubot/TextListener.pm
 lib/Hubot/User.pm
+share/Procfile
+share/README.md
+share/bin/hubot
+share/cpanfile
+share/hubot-scripts.json
 t/00_compile.t
 t/01_help.t
 t/02_ascii.t
