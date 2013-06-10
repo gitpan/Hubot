@@ -1,6 +1,6 @@
 package Hubot::Creator;
 {
-  $Hubot::Creator::VERSION = '0.2.0';
+  $Hubot::Creator::VERSION = '0.2.1';
 }
 
 use Moose;
@@ -43,6 +43,46 @@ sub run {
     };
 
     mkpath( catfile( $path, 'bin' ) );
+    mkpath( catfile( $path, 'lib/Hubot/Adapter' ) );
+    mkpath( catfile( $path, 'lib/Hubot/Scripts' ) );
+
+    my @modules = qw(
+        Hubot/EventEmitter.pm
+        Hubot/Scripts/help.pm
+        Hubot/Scripts/ascii.pm
+        Hubot/Scripts/shorten.pm
+        Hubot/Scripts/tweet.pm
+        Hubot/Scripts/roles.pm
+        Hubot/Response.pm
+        Hubot/Robot.pm
+        Hubot/User.pm
+        Hubot/Adapter.pm
+        Hubot/TextListener.pm
+        Hubot/Listener.pm
+        Hubot/Adapter/Irc.pm
+        Hubot/Adapter/Shell.pm
+        Hubot/Adapter/Campfire.pm
+        Hubot/Message.pm
+        Hubot/Brain.pm
+        Hubot/Creator.pm
+        Hubot.pm
+    );
+
+    my $installed   = $dist_dir =~ /share$/ ? 0  : 1;
+    my $path_prefix = $installed            ? '' : cwd() . '/lib';
+
+    for my $module (@modules) {
+        if ($installed) {
+            next unless require $module;
+        }
+
+        my ( $src, $dst ) = (
+            $installed ? $INC{"$module"} : "$path_prefix/$module",
+            catfile( "$path", 'lib', $module )
+        );
+        $self->copy( $src, $dst );
+    }
+
     dircopy( catfile( $dist_dir, 'lib' ), catfile( $path, 'lib' ), );
 
     my @files = qw(

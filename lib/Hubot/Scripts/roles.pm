@@ -1,6 +1,6 @@
 package Hubot::Scripts::roles;
 {
-  $Hubot::Scripts::roles::VERSION = '0.2.0';
+  $Hubot::Scripts::roles::VERSION = '0.2.1';
 }
 use strict;
 use warnings;

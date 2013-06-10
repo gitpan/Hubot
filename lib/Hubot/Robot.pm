@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.2.0';
+  $Hubot::Robot::VERSION = '0.2.1';
 }
 
 use Moose;
@@ -86,7 +86,7 @@ sub setupHerokuPing {
 
     $self->pw(
         AE::timer 0,
-        1200000,
+        120,
         sub {
             AnyEvent::HTTP::ScopedClient->new($herokuUrl)
                 ->post( sub { print "Keep alive ping!\n" if $ENV{DEBUG} } );
