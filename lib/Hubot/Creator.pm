@@ -1,6 +1,6 @@
 package Hubot::Creator;
 {
-  $Hubot::Creator::VERSION = '0.2.1';
+  $Hubot::Creator::VERSION = '0.2.2';
 }
 
 use Moose;

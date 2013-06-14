@@ -1,6 +1,6 @@
 package Hubot::Adapter::Campfire;
 {
-  $Hubot::Adapter::Campfire::VERSION = '0.2.1';
+  $Hubot::Adapter::Campfire::VERSION = '0.2.2';
 }
 use Moose;
 use namespace::autoclean;
