@@ -1,6 +1,6 @@
 package Hubot::Robot;
 {
-  $Hubot::Robot::VERSION = '0.2.2';
+  $Hubot::Robot::VERSION = '0.2.3';
 }
 
 use Moose;

@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "AnyEvent" => 0,
     "AnyEvent::Campfire::Client" => 0,
     "AnyEvent::HTTP" => 0,
-    "AnyEvent::HTTP::ScopedClient" => 0,
+    "AnyEvent::HTTP::ScopedClient" => "v0.0.5",
     "AnyEvent::HTTPD" => 0,
     "AnyEvent::IRC::Client" => 0,
     "Cwd" => 0,
@@ -49,6 +49,7 @@ my %WriteMakefileArgs = (
     "Time::HiRes" => 0,
     "Try::Tiny" => 0,
     "URI" => 0,
+    "URI::Escape" => 0,
     "URI::QueryParam" => 0,
     "namespace::autoclean" => 0,
     "strict" => 0,
@@ -57,7 +58,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::More" => 0
   },
-  "VERSION" => "0.2.2",
+  "VERSION" => "0.2.3",
   "test" => {
     "TESTS" => "t/*.t"
   }

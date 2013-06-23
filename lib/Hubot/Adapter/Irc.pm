@@ -1,6 +1,6 @@
 package Hubot::Adapter::Irc;
 {
-  $Hubot::Adapter::Irc::VERSION = '0.2.2';
+  $Hubot::Adapter::Irc::VERSION = '0.2.3';
 }
 use Moose;
 use namespace::autoclean;
