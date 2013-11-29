@@ -1,6 +1,6 @@
 package Hubot::Scripts::shorten;
 {
-  $Hubot::Scripts::shorten::VERSION = '0.2.3';
+  $Hubot::Scripts::shorten::VERSION = '0.2.4';
 }
 use strict;
 use warnings;
@@ -86,6 +86,14 @@ sub load {
                     $title = 'no title' unless $title;
                     $title =~ s/\n//g;
                     $title =~ s/(^\s+|\s+$)//g;
+
+                    ## unescape html
+                    $title =~ s/&amp;/&/g;
+                    $title =~ s/&lt;/</g;
+                    $title =~ s/&gt;/>/g;
+                    $title =~ s/&quot;/"/g;
+                    $title =~ s/&apos;/'/g;
+
                     $msg->send("[$title] - $bitly");
                 }
               );

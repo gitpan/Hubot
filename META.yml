@@ -4,11 +4,12 @@ author:
   - 'Hyungsuk Hong <hshong@perl.kr>'
 build_requires:
   Test::More: 0
+  lib: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
   File::ShareDir::Install: 0.03
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -44,4 +45,4 @@ requires:
   namespace::autoclean: 0
   strict: 0
   warnings: 0
-version: 0.2.3
+version: 0.2.4

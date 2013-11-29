@@ -1,6 +1,6 @@
 package Hubot::User;
 {
-  $Hubot::User::VERSION = '0.2.3';
+  $Hubot::User::VERSION = '0.2.4';
 }
 use strict;
 use warnings;

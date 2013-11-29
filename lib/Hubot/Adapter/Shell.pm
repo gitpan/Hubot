@@ -1,6 +1,6 @@
 package Hubot::Adapter::Shell;
 {
-  $Hubot::Adapter::Shell::VERSION = '0.2.3';
+  $Hubot::Adapter::Shell::VERSION = '0.2.4';
 }
 use Moose;
 use namespace::autoclean;
