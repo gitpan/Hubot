@@ -1,6 +1,6 @@
 package Hubot;
 {
-  $Hubot::VERSION = '0.2.4';
+  $Hubot::VERSION = '0.2.5';
 }
 
 1;
@@ -12,6 +12,10 @@ package Hubot;
 =head1 NAME
 
 Hubot - L<AnyEvent> based L<https://github.com/github/hubot>
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

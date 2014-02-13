@@ -1,6 +1,6 @@
 package Hubot::Scripts::help;
 {
-  $Hubot::Scripts::help::VERSION = '0.2.4';
+  $Hubot::Scripts::help::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -10,12 +10,12 @@ sub load {
     $robot->respond(
         qr/help\s*(.*)?$/i,
         sub {
-            my $msg  = shift;              # Hubot::Response
+            my $msg   = shift;           # Hubot::Response
             my @helps = $robot->helps;
 
             my $robotName = $robot->name;
-            unless ($robotName =~ m/^hubot$/) {
-                map { s/hubot/$robotName/ig } @helps;
+            unless ( $robotName =~ m/^hubot$/ ) {
+                map {s/hubot/$robotName/ig} @helps;
             }
 
             if ( $msg->match->[0] ) {
@@ -23,7 +23,7 @@ sub load {
                 @helps = grep { $_ =~ /$regex/i } @helps;
             }
 
-            map { s/^/\# / } @helps;
+            map {s/^/\# /} @helps;
             $msg->send(@helps);
         }
     );
@@ -32,7 +32,7 @@ sub load {
         qr/commands? *$/i,
         sub {
             my $msg = shift;
-            $msg->send(join(', ', $robot->commands));
+            $msg->send( join( ', ', $robot->commands ) );
         }
     );
 }
@@ -46,6 +46,10 @@ sub load {
 =head1 NAME
 
 Hubot::Scripts::help
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

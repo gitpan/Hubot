@@ -1,6 +1,6 @@
 package Hubot::Adapter::Shell;
 {
-  $Hubot::Adapter::Shell::VERSION = '0.2.4';
+  $Hubot::Adapter::Shell::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -13,21 +13,11 @@ use AnyEvent;
 
 use Hubot::Message;
 
-has 'robot' => (
-    is  => 'ro',
-    isa => 'Hubot::Robot',
-);
+has 'robot' => ( is => 'ro', isa => 'Hubot::Robot', );
 
-has '_prompt' => (
-    is     => 'rw',
-    isa    => 'Str',
-    writer => 'setPrompt',
-);
+has '_prompt' => ( is => 'rw', isa => 'Str', writer => 'setPrompt', );
 
-has 'cv' => (
-    is         => 'ro',
-    lazy_build => 1,
-);
+has 'cv' => ( is => 'ro', lazy_build => 1, );
 
 sub _build_cv { AnyEvent->condvar }
 
@@ -70,22 +60,11 @@ sub run {
                 exit;
             }
 
-            my $user = $self->userForId(
-                1,
-                {
-                    name => 'Shell',
-                    room => 'Shell',
-                }
-            );
+            my $user
+                = $self->userForId( 1, { name => 'Shell', room => 'Shell', } );
 
             $self->receive(
-                new Hubot::TextMessage(
-                    {
-                        user => $user,
-                        text => $input,
-                    }
-                )
-            );
+                new Hubot::TextMessage( { user => $user, text => $input, } ) );
 
             print $self->_prompt;
         }
@@ -106,6 +85,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Adapter::Shell - Shell adapter for L<Hubot>
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 package Hubot::Scripts::tweet;
 {
-  $Hubot::Scripts::tweet::VERSION = '0.2.4';
+  $Hubot::Scripts::tweet::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -74,6 +74,10 @@ sub load {
 =head1 NAME
 
 Hubot::Scripts::tweet
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

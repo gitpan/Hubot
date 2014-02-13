@@ -1,16 +1,13 @@
 package Hubot::Listener;
 {
-  $Hubot::Listener::VERSION = '0.2.4';
+  $Hubot::Listener::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
 use Hubot::Response;
 
-has 'robot' => (
-    is  => 'ro',
-    isa => 'Hubot::Robot',
-);
+has 'robot' => ( is => 'ro', isa => 'Hubot::Robot', );
 has 'matcher' => (
     traits  => ['Code'],
     is      => 'rw',
@@ -53,6 +50,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Listener
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

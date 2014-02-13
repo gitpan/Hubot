@@ -1,6 +1,6 @@
 package Hubot::Scripts::ascii;
 {
-  $Hubot::Scripts::ascii::VERSION = '0.2.4';
+  $Hubot::Scripts::ascii::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -12,13 +12,13 @@ sub load {
         sub {
             my $msg = shift;
             $msg->http('http://asciime.heroku.com/generate_ascii')
-              ->query( 's', $msg->match->[1] )->get(
+                ->query( 's', $msg->match->[1] )->get(
                 sub {
                     my ( $body, $hdr ) = @_;
                     return if ( !$body || !$hdr->{Status} =~ /^2/ );
                     $msg->send( split( /\n/, $body ) );
                 }
-              );
+                );
         }
     );
 }
@@ -32,6 +32,10 @@ sub load {
 =head1 NAME
 
 Hubot::Scripts::ascii
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

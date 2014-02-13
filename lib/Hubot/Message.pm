@@ -1,20 +1,13 @@
 package Hubot::Message;
 {
-  $Hubot::Message::VERSION = '0.2.4';
+  $Hubot::Message::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
-has 'user' => (
-    is  => 'ro',
-    isa => 'Hubot::User',
-);
+has 'user' => ( is => 'ro', isa => 'Hubot::User', );
 
-has 'done' => (
-    is      => 'rw',
-    isa     => 'Bool',
-    default => 0,
-);
+has 'done' => ( is => 'rw', isa => 'Bool', default => 0, );
 
 sub finish { shift->done(1) }
 
@@ -23,10 +16,7 @@ sub TO_JSON {
     return {
         ## prvent recursive call
         ## Hubot::UserTO_JSON -> Hubot::Message::TO_JSON -> Hubot::User::TO_JSON
-        user => {
-            name => $self->user->{name},
-            id   => $self->user->{id},
-        },
+        user => { name => $self->user->{name}, id => $self->user->{id}, },
         done => $self->done,
     };
 }
@@ -37,17 +27,14 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::TextMessage;
 {
-  $Hubot::TextMessage::VERSION = '0.2.4';
+  $Hubot::TextMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
 extends 'Hubot::Message';
 
-has 'text' => (
-    is  => 'ro',
-    isa => 'Str',
-);
+has 'text' => ( is => 'ro', isa => 'Str', );
 
 sub match {
     my ( $self, $regex ) = @_;
@@ -65,7 +52,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::EnterMessage;
 {
-  $Hubot::EnterMessage::VERSION = '0.2.4';
+  $Hubot::EnterMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -76,7 +63,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::LeaveMessage;
 {
-  $Hubot::LeaveMessage::VERSION = '0.2.4';
+  $Hubot::LeaveMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -87,7 +74,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::WhisperMessage;
 {
-  $Hubot::WhisperMessage::VERSION = '0.2.4';
+  $Hubot::WhisperMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -98,7 +85,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::NoticeMessage;
 {
-  $Hubot::NoticeMessage::VERSION = '0.2.4';
+  $Hubot::NoticeMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -109,7 +96,7 @@ __PACKAGE__->meta->make_immutable;
 
 package Hubot::CatchAllMessage;
 {
-  $Hubot::CatchAllMessage::VERSION = '0.2.4';
+  $Hubot::CatchAllMessage::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -128,6 +115,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Message
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 package Hubot::Creator;
 {
-  $Hubot::Creator::VERSION = '0.2.4';
+  $Hubot::Creator::VERSION = '0.2.5';
 }
 
 use Moose;
@@ -14,11 +14,7 @@ use File::ShareDir 'dist_dir';
 use File::Spec::Functions 'catfile';
 use Try::Tiny;
 
-has 'path' => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => './hubot',
-);
+has 'path' => ( is => 'ro', isa => 'Str', default => './hubot', );
 
 sub copy {
     my ( $self, $src, $dst ) = @_;
@@ -123,6 +119,10 @@ __PACKAGE__->meta->make_immutable;
 
 Hubot::Creator - deployable package builder for C<hubot>
 
+=head1 VERSION
+
+version 0.2.5
+
 =head1 SYNOPSIS
 
     Hubot::Creator->new(path => '/path/to/hubot')->run;
@@ -139,4 +139,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

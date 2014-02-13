@@ -1,12 +1,11 @@
 Changes
-INSTALL
 LICENSE
 MANIFEST
 META.yml
 Makefile.PL
-README.md
+README
 bin/hubot
-dist.ini
+cpanfile
 hubot-scripts.json
 lib/Hubot.pm
 lib/Hubot/Adapter.pm
@@ -39,4 +38,3 @@ t/03_roles.t
 t/04_shorten.t
 t/05_tweet.t
 t/lib/Hubot/Adapter/Helper.pm
-weaver.ini

@@ -1,24 +1,15 @@
 package Hubot::Response;
 {
-  $Hubot::Response::VERSION = '0.2.4';
+  $Hubot::Response::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
-has 'robot' => (
-    is  => 'ro',
-    isa => 'Hubot::Robot',
-);
+has 'robot' => ( is => 'ro', isa => 'Hubot::Robot', );
 
-has 'message' => (
-    is  => 'rw',
-    isa => 'Hubot::Message',
-);
+has 'message' => ( is => 'rw', isa => 'Hubot::Message', );
 
-has 'match' => (
-    is  => 'rw',
-    isa => 'ArrayRef'
-);
+has 'match' => ( is => 'rw', isa => 'ArrayRef' );
 
 sub send {
     my ( $self, @strings ) = @_;
@@ -42,7 +33,7 @@ sub reply {
 
 sub random {
     my ( $self, @items ) = @_;
-    return $items[ rand( scalar(@items) ) ];
+    return $items[rand( scalar(@items) )];
 }
 
 sub finish {
@@ -71,6 +62,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Response
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

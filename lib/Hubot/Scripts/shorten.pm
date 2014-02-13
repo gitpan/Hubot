@@ -1,6 +1,6 @@
 package Hubot::Scripts::shorten;
 {
-  $Hubot::Scripts::shorten::VERSION = '0.2.4';
+  $Hubot::Scripts::shorten::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -39,15 +39,14 @@ sub load {
 
             $msg->http( $msg->match->[0] )->header( "User-Agent",
                 "Mozilla/5.0 (X11; Linux x86_64; rv:10.0.7) Gecko/20100101 Firefox/10.0.7 Iceweasel/10.0.7"
-              )->get(
+                )->get(
                 sub {
                     my ( $body, $hdr ) = @_;
                     return if ( !$body || !$hdr->{Status} =~ /^2/ );
 
                     ## content-type
                     my @ct = split( /\s*,\s*/, $hdr->{'content-type'} );
-                    if ( grep { /^image\/.+$/i } @ct || grep { !/text/i } @ct )
-                    {
+                    if ( grep {/^image\/.+$/i} @ct || grep { !/text/i } @ct ) {
                         return $msg->send("[$ct[0]] - $bitly");
                     }
 
@@ -55,12 +54,13 @@ sub load {
                     ### <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
                     ### [FILTER] - <script type="text/javascript" src="http://news.chosun.com/dhtm/js/gnb_news_2011.js" charset="euc-kr"></script>
                     $body =~ s{\r\n}{\n}g;
-                    my @charset_lines =
-                      grep { $_ !~ /script/ } grep { /charset/ } split /\n/,
-                      $body;
+                    my @charset_lines
+                        = grep { $_ !~ /script/ } grep {/charset/} split /\n/,
+                        $body;
                     my $charset;
-                    if ( "@{[ @charset_lines ]}" =~
-                        /charset=(?:'([^']+?)'|"([^"]+?)"|([a-zA-Z0-9_-]+)\b)/ )
+                    if ( "@{[ @charset_lines ]}"
+                        =~ /charset=(?:'([^']+?)'|"([^"]+?)"|([a-zA-Z0-9_-]+)\b)/
+                        )
                     {
                         $charset = lc( $1 || $2 || $3 );
                     }
@@ -96,7 +96,7 @@ sub load {
 
                     $msg->send("[$title] - $bitly");
                 }
-              );
+                );
         }
     );
 }
@@ -110,6 +110,10 @@ sub load {
 =head1 NAME
 
 Hubot::Scripts::shorten
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

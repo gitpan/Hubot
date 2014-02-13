@@ -1,6 +1,6 @@
 package Hubot::User;
 {
-  $Hubot::User::VERSION = '0.2.4';
+  $Hubot::User::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -22,6 +22,10 @@ sub TO_JSON { return { %{ shift() } } }
 =head1 NAME
 
 Hubot::User - storage object for hubot users.
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

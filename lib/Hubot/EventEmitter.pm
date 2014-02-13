@@ -1,15 +1,11 @@
 package Hubot::EventEmitter;
 {
-  $Hubot::EventEmitter::VERSION = '0.2.4';
+  $Hubot::EventEmitter::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
-has 'events' => (
-    is      => 'rw',
-    isa     => 'HashRef',
-    default => sub { {} },
-);
+has 'events' => ( is => 'rw', isa => 'HashRef', default => sub { {} }, );
 
 sub emit {
     my ( $self, $name ) = ( shift, shift );
@@ -36,6 +32,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::EventEmitter
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

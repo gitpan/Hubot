@@ -1,6 +1,6 @@
 package Hubot::Scripts::roles;
 {
-  $Hubot::Scripts::roles::VERSION = '0.2.4';
+  $Hubot::Scripts::roles::VERSION = '0.2.5';
 }
 use strict;
 use warnings;
@@ -50,7 +50,7 @@ sub load {
         sub {
             my $msg = shift;
             my ( $name, $newRole ) = @{ $msg->match };
-            $name    =~ s/(^\s+|\s+$)//g;
+            $name =~ s/(^\s+|\s+$)//g;
             $newRole =~ s/(^\s+|\s+$)//g;
             if ( $name !~ m/^(|who|what|where|when|why)$/i ) {
                 unless ( $newRole =~ m/^not\s+/i ) {
@@ -87,7 +87,7 @@ sub load {
         sub {
             my $msg = shift;
             my ( $name, $newRole ) = @{ $msg->match };
-            $name    =~ s/(^\s+|\s+$)//g;
+            $name =~ s/(^\s+|\s+$)//g;
             $newRole =~ s/(^\s+|\s+$)//g;
             if ( $name !~ m/^(|who|what|where|when|why)$/i ) {
                 my @users = $robot->usersForFuzzyName($name);
@@ -98,7 +98,8 @@ sub load {
                         $msg->send("I know.");
                     }
                     else {
-                        my @roles = grep { $newRole ne $_ } @{ $user->{roles} };
+                        my @roles
+                            = grep { $newRole ne $_ } @{ $user->{roles} };
                         $user->{roles} = \@roles;
                         $msg->send("OK, $name is no longer $newRole.");
                     }
@@ -132,6 +133,10 @@ sub getAmbiguousUserText {
 =head1 NAME
 
 Hubot::Scripts::roles
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

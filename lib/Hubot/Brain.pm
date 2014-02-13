@@ -1,6 +1,6 @@
 package Hubot::Brain;
 {
-  $Hubot::Brain::VERSION = '0.2.4';
+  $Hubot::Brain::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
@@ -49,6 +49,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Brain - Represents somewhat persistent storage for the robot.
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

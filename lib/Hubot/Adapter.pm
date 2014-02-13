@@ -1,16 +1,13 @@
 package Hubot::Adapter;
 {
-  $Hubot::Adapter::VERSION = '0.2.4';
+  $Hubot::Adapter::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
 extends 'Hubot::EventEmitter';
 
-has 'robot' => (
-    is  => 'ro',
-    isa => 'Hubot::Robot'
-);
+has 'robot' => ( is => 'ro', isa => 'Hubot::Robot' );
 
 sub send    { }
 sub whisper { }
@@ -38,6 +35,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::Adapter - specific interface to a chat source for robots.
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 

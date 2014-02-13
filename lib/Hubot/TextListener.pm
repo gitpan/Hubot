@@ -1,16 +1,13 @@
 package Hubot::TextListener;
 {
-  $Hubot::TextListener::VERSION = '0.2.4';
+  $Hubot::TextListener::VERSION = '0.2.5';
 }
 use Moose;
 use namespace::autoclean;
 
 extends 'Hubot::Listener';
 
-has 'regex' => (
-    is  => 'ro',
-    isa => 'RegexpRef',
-);
+has 'regex' => ( is => 'ro', isa => 'RegexpRef', );
 
 sub BUILD {
     my $self = shift;
@@ -37,6 +34,10 @@ __PACKAGE__->meta->make_immutable;
 =head1 NAME
 
 Hubot::TextListener - text Listener for hubot
+
+=head1 VERSION
+
+version 0.2.5
 
 =head1 SYNOPSIS
 
