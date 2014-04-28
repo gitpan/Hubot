@@ -1,7 +1,5 @@
 package Hubot::Scripts::roles;
-{
-  $Hubot::Scripts::roles::VERSION = '0.2.5';
-}
+$Hubot::Scripts::roles::VERSION = '0.2.6';
 use strict;
 use warnings;
 
@@ -136,7 +134,7 @@ Hubot::Scripts::roles
 
 =head1 VERSION
 
-version 0.2.5
+version 0.2.6
 
 =head1 SYNOPSIS
 

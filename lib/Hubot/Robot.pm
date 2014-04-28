@@ -1,8 +1,5 @@
 package Hubot::Robot;
-{
-  $Hubot::Robot::VERSION = '0.2.5';
-}
-
+$Hubot::Robot::VERSION = '0.2.6';
 use Moose;
 use namespace::autoclean;
 
@@ -62,7 +59,7 @@ sub BUILD {
 sub setupHerokuPing {
     my $self = shift;
 
-    my $httpd = AnyEvent::HTTPD->new( port => $ENV{PORT} || 8080 );
+    my $httpd = AnyEvent::HTTPD->new( port => $ENV{PORT} || 8080, host => $ENV{HUBOT_HTTPD_ADDRESS} || '0.0.0.0' );
     $httpd->reg_cb(
         '/hubot/ping' => sub {
             my ( $httpd, $req ) = @_;
@@ -359,7 +356,7 @@ Hubot::Robot
 
 =head1 VERSION
 
-version 0.2.5
+version 0.2.6
 
 =head1 SYNOPSIS
 
