@@ -1,5 +1,5 @@
 package Hubot::Creator;
-$Hubot::Creator::VERSION = '0.2.6';
+$Hubot::Creator::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -118,7 +118,7 @@ Hubot::Creator - deployable package builder for C<hubot>
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

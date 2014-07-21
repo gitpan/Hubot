@@ -1,5 +1,5 @@
 package Hubot::User;
-$Hubot::User::VERSION = '0.2.6';
+$Hubot::User::VERSION = '0.2.7';
 use strict;
 use warnings;
 
@@ -23,7 +23,7 @@ Hubot::User - storage object for hubot users.
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

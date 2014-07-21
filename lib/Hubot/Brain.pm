@@ -1,5 +1,5 @@
 package Hubot::Brain;
-$Hubot::Brain::VERSION = '0.2.6';
+$Hubot::Brain::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -50,7 +50,7 @@ Hubot::Brain - Represents somewhat persistent storage for the robot.
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,5 @@
 package Hubot::Adapter::Campfire;
-$Hubot::Adapter::Campfire::VERSION = '0.2.6';
+$Hubot::Adapter::Campfire::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -136,7 +136,7 @@ Hubot::Adapter::Campfire - Campfire adapter for L<Hubot>
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,5 @@
 package Hubot::EventEmitter;
-$Hubot::EventEmitter::VERSION = '0.2.6';
+$Hubot::EventEmitter::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -33,7 +33,7 @@ Hubot::EventEmitter
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

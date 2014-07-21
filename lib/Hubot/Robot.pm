@@ -1,5 +1,5 @@
 package Hubot::Robot;
-$Hubot::Robot::VERSION = '0.2.6';
+$Hubot::Robot::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -356,7 +356,7 @@ Hubot::Robot
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

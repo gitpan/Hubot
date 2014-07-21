@@ -1,5 +1,5 @@
 package Hubot;
-$Hubot::VERSION = '0.2.6';
+$Hubot::VERSION = '0.2.7';
 1;
 
 =pod
@@ -12,7 +12,7 @@ Hubot - L<AnyEvent> based L<https://github.com/github/hubot>
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

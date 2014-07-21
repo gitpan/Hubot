@@ -1,5 +1,5 @@
 package Hubot::Adapter::Irc;
-$Hubot::Adapter::Irc::VERSION = '0.2.6';
+$Hubot::Adapter::Irc::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -143,6 +143,8 @@ sub run {
         part => sub {
             my ( $cl, $nick, $channel, $is_myself, $msg ) = @_;
 
+            $msg = "no quit message" unless $msg;
+
             print "$nick leaves $channel: $msg\n";
             my $user = $self->createUser( $channel, $nick );
             $self->receive(
@@ -150,6 +152,8 @@ sub run {
         },
         quit => sub {
             my ( $cl, $nick, $msg ) = @_;
+
+            $msg = "no quit message" unless $msg;
 
             print "$nick quit: $msg\n";
             my $user = $self->createUser( '', $nick )
@@ -268,7 +272,7 @@ Hubot::Adapter::Irc - IRC adapter for L<Hubot>
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

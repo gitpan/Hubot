@@ -1,5 +1,5 @@
 package Hubot::Scripts::shorten;
-$Hubot::Scripts::shorten::VERSION = '0.2.6';
+$Hubot::Scripts::shorten::VERSION = '0.2.7';
 use strict;
 use warnings;
 use URI;
@@ -111,7 +111,7 @@ Hubot::Scripts::shorten
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

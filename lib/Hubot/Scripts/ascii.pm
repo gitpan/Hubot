@@ -1,5 +1,5 @@
 package Hubot::Scripts::ascii;
-$Hubot::Scripts::ascii::VERSION = '0.2.6';
+$Hubot::Scripts::ascii::VERSION = '0.2.7';
 use strict;
 use warnings;
 
@@ -33,7 +33,7 @@ Hubot::Scripts::ascii
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

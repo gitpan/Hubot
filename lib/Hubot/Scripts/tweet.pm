@@ -1,5 +1,5 @@
 package Hubot::Scripts::tweet;
-$Hubot::Scripts::tweet::VERSION = '0.2.6';
+$Hubot::Scripts::tweet::VERSION = '0.2.7';
 use strict;
 use warnings;
 use JSON::XS;
@@ -75,7 +75,7 @@ Hubot::Scripts::tweet
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,5 @@
 package Hubot::Response;
-$Hubot::Response::VERSION = '0.2.6';
+$Hubot::Response::VERSION = '0.2.7';
 use Moose;
 use namespace::autoclean;
 
@@ -63,7 +63,7 @@ Hubot::Response
 
 =head1 VERSION
 
-version 0.2.6
+version 0.2.7
 
 =head1 SYNOPSIS
 
